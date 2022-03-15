@@ -1,0 +1,54 @@
+import csv
+import statistics
+import random
+import plotly.figure_factory as ff
+import plotly.graph_objects as go
+import pandas as pd
+
+df1= pd.read_csv("medium_data.csv")
+data1= df1["claps"].tolist()
+population=statistics.mean(data1)
+print("Population Mean=", population)
+
+  
+def main ():
+    data_mean1= data_mean(20)
+    std1=std(20)
+    print("Sample Mean =", data_mean1)
+    print("Standard Deviation=", std1)
+    
+def data_mean(size):
+    dataset=[]
+    for i in range (0,size):
+        random_index=random.randint(0,len(data1))
+        value=data1[random_index]
+        dataset.append(value)
+    fig=ff.create_distplot([dataset],["average"],show_hist=False)
+    fig.show()
+    mean=statistics.mean(dataset)
+    return mean
+
+
+def std(size):
+    dataset=[]
+    for i in range (0,size):
+        random_index=random.randint(0,len(data1))
+        value=data1[random_index]
+        dataset.append(value)
+    fig=ff.create_distplot([dataset],["average"],show_hist=False)
+    fig.show()
+    std=statistics.stdev(dataset)
+    return std
+
+main()
+
+
+
+    
+
+
+
+
+
+    
+    
